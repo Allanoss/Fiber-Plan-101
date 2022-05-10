@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    {% if title %}
+    <title>Fiber Plan 101 - {{ title }}</title>
+    {% else %}
+    <title>Fiber Plan 101</title>
+    {% endif %}
+    <link rel="icon" href="data:image/jpeg;base64,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" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <link rel="stylesheet" href="{% static 'blog/css/mdb.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}" />
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand me-2" href="/">
+                <img src="https://media.istockphoto.com/photos/fiber-optic-cables-around-earth-usa-nightlights-picture-id175950017?k=20&m=175950017&s=612x612&w=0&h=TILysBP1gPUp_NIUIoVs6aNXvPH-Xz8MwuaGCpuqhxA=" height="16" alt="MDB Logo" loading="lazy" style="margin-top: -1px;" />
+            </a>
+
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+
+            <div class="collapse navbar-collapse" id="navbarButtonsExample">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'plotter-index' %}">Plot</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'plotter-item_list' %}">Inventory</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center">
+                    {% if user.is_authenticated %}
+                    <button type="button" class="btn btn-light me-3"><a href="{% url 'logout' %}">Logout</a></button>
+                    <i class="fab fa-profile"></i></a> {% else %}
+                    <button type="button" class="btn btn-link px-3 me-2"><a href="{% url 'login' %}">Login</a></button>
+                    <button type="button" class="btn btn-link px-3 me-3"><a href="{% url 'register' %}">Sign up!</a></button> {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-2">
+        {% if messages %} 
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    {% block content %}{% endblock %}
+                </div>
+                <div class="col-lg-4 p-4">
+                    <div class="card">
+                        {% block sidebar %}{% endblock %}
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script type="text/javascript"></script>
+
+</body>
+
+</html>
