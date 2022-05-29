@@ -16,7 +16,7 @@ from plotter.models import Coordinate
 
 Client1 = ors.Client(key='5b3ce3597851110001cf624820c44dd22f3c4a128773998371409a6f') #ors api key 1
 Client2 = ors.Client(key='5b3ce3597851110001cf6248e6b29a12715344b7a18a42c037cceb60') #ors api key 2
-apikey = 'AIzaSyA_xtmQprzuxWdhVy0JxjDPMA0loHExtx8'                                   #GoogleMaps api key
+apikey = 'GoogleAPIKey'                                   #GoogleMaps api key
 
 #invert coordinates
 def Gmaps_distance(coordinates): 
