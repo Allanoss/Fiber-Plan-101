@@ -14,8 +14,8 @@ from ipywidgets.embed import embed_minimal_html
 
 from plotter.models import Coordinate
 
-Client1 = ors.Client(key='5b3ce3597851110001cf624820c44dd22f3c4a128773998371409a6f') #ors api key 1
-Client2 = ors.Client(key='5b3ce3597851110001cf6248e6b29a12715344b7a18a42c037cceb60') #ors api key 2
+Client1 = ors.Client(key='   ') #ors api key 1
+Client2 = ors.Client(key='   ') #ors api key 2
 apikey = 'GoogleAPIKey'                                   #GoogleMaps api key
 
 #invert coordinates
