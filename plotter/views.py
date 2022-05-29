@@ -7,7 +7,7 @@ from django.contrib import messages
 
 from .models  import Item, Plot, Coordinate
 from .forms import PointsForm, ItemForm, PlotForm, PlotConnectForm, QuoteItemsFrom
-from .utility import plot as plot_network, item_count
+from .utility import plot as plot_network, item_count, save_quote_to_file
 
 
 # Create your views here.
@@ -62,7 +62,7 @@ def more_settings(request, id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Settings saved successfully')
-            return redirect(reverse('plotter-more_settings', args=[plot.id]))
+            return redirect(reverse('plotter-populate', args=[plot.id]))
 
     context = {
         'plot': plot,
@@ -106,10 +106,13 @@ def plot(request, id):
     for coordinate in coordinates:
         x_y = coordinate.coordinates
         x, y = x_y.split(',')
-        x_y_array = [float(x), float(y)]
-        array_of_array.append(x_y_array)
-        array_of_names.append(coordinate.name)
-
+        try:
+            x_y_array = [float(x), float(y)]
+            array_of_array.append(x_y_array)
+            array_of_names.append(coordinate.name)
+        except:
+            pass
+            
     # points=[[36.8159, -1.2795], [36.8219,-1.2921],[36.8259, -1.2850], [36.8145, -1.2870], [36.8222, -1.2935]]
     points = array_of_array
     names = array_of_names
@@ -119,19 +122,25 @@ def plot(request, id):
     if plot.set_start_point:
         x_y = plot.set_start_point.coordinates # "36.8159, -1.2795"
         x, y = x_y.split(',') # "36.8159" "-1.2795"
-        x_y_array = [float(x), float(y)] # [36.8159 -1.2795]
-        set_start = x_y_array
-
+        try:
+            x_y_array = [float(x), float(y)] # [36.8159 -1.2795]
+            set_start = x_y_array
+        except:
+            pass
+            
     connect_point = None
     if plot.connect_coordinate:
         x_y = plot.connect_coordinate # "36.8159, -1.2795"
         x, y = x_y.split(',') # "36.8159" "-1.2795"
-        x_y_array = [float(x), float(y)] # [36.8159 -1.2795]
-        connect_point = x_y_array
-
+        try:
+            x_y_array = [float(x), float(y)] # [36.8159 -1.2795]
+            connect_point = x_y_array
+        except:
+            pass
+           
     MinTot, Start = plot_network(points, names, map_name, set_start, connect_point)
 
-    plot.distance = MinTot
+    plot.distance = round(MinTot, 2)
     plot.start = Start
     plot.save()
     
@@ -180,6 +189,19 @@ def quote_price(request, id):
         onu_price = plot.onu.unit_price * onus
     #tension_clamps_price = poles * plot.others.filter(sku='Tension clamp').first().unit_price
     total = poles_price + fibre_optic_price + man_hole_price + hand_hole_price + support_tangent_price + olt_price + onu_price
+
+    Support_Tangent = poles
+    onu = onus
+    olt = "1"
+    save_quote_to_file(plot, poles, poles_price,
+        fibre_optic, fibre_optic_price,
+        man_holes, man_hole_price,
+        hand_holes, hand_hole_price,
+        Support_Tangent, support_tangent_price,
+        onu, onu_price,
+        olt, olt_price, 
+        total
+    )
    
     context = {
         'plot':plot,
