@@ -1,22 +1,25 @@
-
+from django.contrib import messages
 from calendar import c
 from ssl import AlertDescription
 from turtle import color
+from django.http import HttpRequest
+from django.shortcuts import redirect
 import openrouteservice as ors
-import folium
 import math
 import gmplot
 import json
+from django.urls import reverse
 import googlemaps
 import os
 import gmaps.geojson_geometries
 from ipywidgets.embed import embed_minimal_html
+from requests import request
 
 from plotter.models import Coordinate
 
-Client1 = ors.Client(key='   ') #ors api key 1
-Client2 = ors.Client(key='   ') #ors api key 2
-apikey = 'GoogleAPIKey'                                   #GoogleMaps api key
+Client1 = ors.Client(key='5b3ce3597851110001cf624820c44dd22f3c4a128773998371409a6f') #ors api key 1
+Client2 = ors.Client(key='5b3ce3597851110001cf6248e6b29a12715344b7a18a42c037cceb60') #ors api key 2
+apikey = 'AIzaSyA_xtmQprzuxWdhVy0JxjDPMA0loHExtx8'                                   #GoogleMaps api key
 
 #invert coordinates
 def Gmaps_distance(coordinates): 
@@ -44,7 +47,6 @@ def Gmaps_distance(coordinates):
         if Tdistance>MaxTot:
               MaxTot=Tdistance
               Altstart=i 
- 
     return Start, Altstart 
 
 def ors_route(coordinates):
@@ -71,16 +73,30 @@ def Start_Distance(points, connect_point=None):
     for i in points: 
         Tdistance=0    
         now=[Start,i]
-        distance=ors_distance(now)
+        try:
+            distance=ors_distance(now)
+        except:
+           def Coorderror (request,id):
+                messages.error(request, message='Check coordinates and try again.')
+                   
         Tdistance+=distance
+                   
 
     if connect_point:
         now=[Start, connect_point]
-        distance=ors_distance(now)
+        try:
+            distance=ors_distance(now)
+        except:
+           def Coorderror (request,id):
+                messages.error(request, 'Check coordinates and try again.')                
         Tdistance += distance
 
-        now = [Altstart,connect_point]  
-        distance=ors_distance(now)
+        now = [Altstart,connect_point] 
+        try: 
+            distance=ors_distance(now)
+        except:
+           def Coorderror (request,id):
+                messages.error(request, 'Check coordinates and try again.')                
         Tdistance += distance
     return Tdistance, Start, Altstart       
 
@@ -89,16 +105,28 @@ def Set_Start_Distance(points, set_start, connect_point=None):
     for i in points: 
         Tdistance=0    
         now=[set_start,i]
-        distance=ors_distance(now)
+        try:
+            distance=ors_distance(now)
+        except:
+           def Coorderror (request,id):
+                messages.error(request, 'Check coordinates and try again.') 
         Tdistance+=distance
 
     if connect_point:
         now=[set_start, connect_point]
-        distance=ors_distance(now)
+        try:
+            distance=ors_distance(now)
+        except:
+           def Coorderror (request,id):
+                messages.error(request, 'Check coordinates and try again.') 
         Tdistance += distance
 
         now = [Altstart,connect_point]  
-        distance=ors_distance(now)
+        try:
+            distance=ors_distance(now)
+        except:
+           def Coorderror (request,id):
+                messages.error(request, 'Check coordinates and try again.') 
         Tdistance += distance
     Start=set_start
    
@@ -123,9 +151,14 @@ def plot(points, names, map_name, set_start=None, connect_point=None):
             continue
   
         now=[Start,points[i]]
-        route=ors_route(now)
-        geojson_layer = gmaps.geojson_layer(route)
-        fig.add_layer(geojson_layer)
+        try:
+            route=ors_route(now)
+            geojson_layer = gmaps.geojson_layer(route)
+            fig.add_layer(geojson_layer)
+        except:
+            def Coorderror (request,id):
+             messages.error(request, 'Check coordinates and try again.')        
+
 
     location2=list()
     for i in points:
@@ -147,9 +180,13 @@ def plot(points, names, map_name, set_start=None, connect_point=None):
     
     if connect_point:
         now=[Start, connect_point]
-        route = ors_route(now)    
-        geojson_layer = gmaps.geojson_layer(route)
-        fig.add_layer(geojson_layer)
+        try:
+            route = ors_route(now)    
+            geojson_layer = gmaps.geojson_layer(route)
+            fig.add_layer(geojson_layer)
+        except:
+           def Coorderror (request,id):
+                messages.error(request, 'Check coordinates and try again.')                
 
         location3=list()
         location3.append((connect_point[1], connect_point[0]))
@@ -162,9 +199,13 @@ def plot(points, names, map_name, set_start=None, connect_point=None):
         now=list()
         now.append((connect_point[0],connect_point[1]))
         now.append((Altstart[0],Altstart[1]))
-        route = ors_route(now)
-        geojson_layer = gmaps.geojson_layer(route)
-        fig.add_layer(geojson_layer)
+        try:
+            route = ors_route(now)
+            geojson_layer = gmaps.geojson_layer(route)
+            fig.add_layer(geojson_layer)
+        except:
+            def Coorderror (request,id):
+                messages.error(request, 'Check coordinates and try again.')    
 
 
 

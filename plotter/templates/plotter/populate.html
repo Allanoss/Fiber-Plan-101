@@ -11,7 +11,7 @@
     <div class="col-12">
       <label class="visually-hidden" for="inlineFormInputGroupUsername">Coordinates</label>
       <div class="input-group">
-        <input type="text" name="coordinates" class="form-control" id="inlineFormInputGroupUsername" placeholder="longitude, latitude" required/>
+        <input type="text" name="coordinates" class="form-control" id="inlineFormInputGroupUsername" placeholder="longitude, latitude" pattern='[^a-z^A-Z]+' required/>
       </div>
     </div>
   
@@ -58,10 +58,10 @@
   
 </div>
 <div class="d-flex gap-2 my-3">
-  <a class="btn btn-primary" href="/media/{{plot.name}}.docx">
+  <a class="btn btn-primary" href="/media/{{plot.name}}.docx" target="_blank">
     Previous Quote
   </a>
-  <a class="btn btn-success" href="/media/{{plot.name}}.html">
+  <a class="btn btn-success" href="/media/{{plot.name}}.html" target="_blank">
     Previous Plot
   </a>
 </div>

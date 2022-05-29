@@ -2,19 +2,20 @@
 <div class="card p-3 mb-3">
   <div class="card p-3 mb-3">
     <ul class="list-group list-group-light">
+
         <li class="list-group-item">Plot Name: {{ plot.name }}</li>
         <li class="list-group-item">Start Point is {{ plot.start }}</li>
         <li class="list-group-item">The Distance is {{ plot.distance }} m.</li>
         <li class="list-group-item">
-          <a href="/media/{{plot.name}}.html">
+          <a href="/media/{{plot.name}}.html" target="_blank">
             <button type="submit" class="btn btn-primary">
-              <i class="fas fa-download me-2"></i>
+              <i class="fas fa-download me-2" ></i>
               View Network Plot
             </button>
           </a>
         </li>
     </ul>
-</div>
+  </div>
 </div>
 
 <!-- Footer -->
@@ -37,7 +38,6 @@
     </p>
 
 </div>
-
 
 </footer>
 {% endblock content %}
