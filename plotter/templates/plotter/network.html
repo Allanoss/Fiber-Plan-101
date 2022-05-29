@@ -1,0 +1,43 @@
+{% extends "plotter/base.html" %} {% load crispy_forms_tags %} {% block content %}
+<div class="card p-3 mb-3">
+  <div class="card p-3 mb-3">
+    <ul class="list-group list-group-light">
+        <li class="list-group-item">Plot Name: {{ plot.name }}</li>
+        <li class="list-group-item">Start Point is {{ plot.start }}</li>
+        <li class="list-group-item">The Distance is {{ plot.distance }} m.</li>
+        <li class="list-group-item">
+          <a href="/media/{{plot.name}}.html">
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-download me-2"></i>
+              View Network Plot
+            </button>
+          </a>
+        </li>
+    </ul>
+</div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-2 bg-blue text-center">
+    
+</div>
+    <p>
+        <i>
+        <a class="text-center py-3">  Fast and Efficient Design || </a>
+        <i>
+        <i>
+        <a class="text-center py-3">Accurate Qoutations || </a>
+        </i>
+        <i>
+        <a class="text-center py-3">  Readily Integratable || </a>
+        </i>
+        <i>
+        <a class="text-center py-3"> You are in charge of the design</a>
+        </i>
+    </p>
+
+</div>
+
+
+</footer>
+{% endblock content %}

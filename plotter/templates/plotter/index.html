@@ -1,0 +1,33 @@
+{% extends "plotter/base.html" %} {% load crispy_forms_tags %} {% block content %}
+<form method="POST" action="{% url 'plotter-create' %}" class="row row-cols-lg-auto g-3 align-items-center">
+  {% csrf_token %}
+    <div class="col-12">
+      <label class="visually-hidden" for="inlineFormInputGroupUsername">Plot name</label>
+      <div class="input-group">
+        <input type="text" name="name" class="form-control" id="inlineFormInputGroupUsername" placeholder="Plot name" required />
+      </div>
+    </div>
+  
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+<div class="card p-3 mb-3">
+    <div class="list-group list-group-light">
+      {% for plot in plots %}
+      <a
+        href="{% url 'plotter-populate' plot.id %}"
+        class="list-group-item list-group-item-action px-3 border-0 ripple"
+        >{{ plot.name }}</a
+      >
+      {% empty %}
+      <a
+        href="#"
+        class="list-group-item list-group-item-action px-3 border-0 ripple"
+        >Sorry, no plots in this list.</a
+      >
+      {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

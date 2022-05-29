@@ -1,0 +1,65 @@
+{% extends "plotter/base.html" %} {% load crispy_forms_tags %} {% block content %}
+<div class="card p-3 mb-3">
+    <form method="POST">
+        {% csrf_token %}
+        <legend class="border-bottom mb-4">Enter plotting points</legend>
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+        <div class="row mb-4">
+            <div class="col">
+              <div class="form-outline">
+                <input type="text" name="name" id="form3Example1" class="form-control" required />
+                <label class="form-label" for="form3Example1">Name</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-outline">
+                <input type="text" name="coordinates" id="form3Example2" class="form-control" required />
+                <label class="form-label" name="coordinates" for="form3Example2">Coordinates</label>
+              </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+              <div class="form-outline">
+                <input type="text" name="name" id="form3Example1" class="form-control" required />
+                <label class="form-label" for="form3Example1">Name</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-outline">
+                <input type="text" name="coordinates" id="form3Example2" class="form-control" required />
+                <label class="form-label" for="form3Example2">Coordinates</label>
+              </div>
+            </div>
+        </div>
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Plot </button>
+
+    </form>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-2 bg-blue text-center">
+    
+</div>
+
+    <p>
+        <i>
+        <a class="text-center py-3">  Fast and Efficient Design || </a>
+        <i>
+        <i>
+        <a class="text-center py-3">Accurate Qoutations || </a>
+        </i>
+        <i>
+        <a class="text-center py-3">  Readily Integratable || </a>
+        </i>
+        <i>
+        <a class="text-center py-3"> You are in charge of the design</a>
+        </i>
+    </p>
+
+</div>
+
+
+</footer>
+{% endblock content %}

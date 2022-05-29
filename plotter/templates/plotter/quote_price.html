@@ -1,0 +1,112 @@
+{% extends "plotter/base.html" %} {% load crispy_forms_tags %} {% block content %}
+<form method="POST" class="row row-cols-lg-auto g-3 align-items-center">
+  {% csrf_token %}
+
+<div class="card p-3 mb-3">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Category</th>
+            <th scope="col">SKU</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Unit Price</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Poles</td>
+            <td>{{plot.pole|default:"-"}}</td>
+            <td>{{poles}}</td>
+            <td>{{plot.pole.unit_price}}</td>
+            <td>{{poles_price}}</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Fibre Cable</td>
+            <td>{{plot.fibre_optic|default:"-"}}</td>
+            <td>{{fibre_optic}}</td>
+            <td>{{plot.fibre_optic.unit_price}}</td>
+            <td>{{fibre_optic_price}}</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Man hole</td>
+            <td>{{plot.man_hole|default:"-"}}</td>
+            <td>{{man_holes}}</td>
+            <td>{{plot.man_hole.unit_price}}</td>
+            <td>{{man_hole_price}}</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Hand Hole</td>
+            <td>{{plot.hand_hole|default:"-"}}</td>
+            <td>{{hand_holes}}</td>
+            <td>{{plot.hand_hole.unit_price}}</td>
+            <td>{{hand_hole_price}}</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>Support Tangent</td>
+            <td>{{plot.Support_Tangent|default:"-"}}</td>
+            <td>{{Support_Tangent}}</td>
+            <td>{{plot.Support_Tangent.unit_price}}</td>
+            <td>{{support_tangent_price}}</td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>ONU</td>
+            <td>{{plot.onu|default:"-"}}</td>
+            <td>{{onu}}</td>
+            <td>{{plot.onu.unit_price}}</td>
+            <td>{{onu_price}}</td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td>OLT</td>
+            <td>{{plot.olt|default:"-"}}</td>
+            <td>{{olt}}</td>
+            <td>{{plot.olt.unit_price}}</td>
+            <td>{{olt_price}}</td>
+          </tr>
+          <tr>
+            <td colspan="4" style="text-align: center;">TOTAL</td>
+            <td>{{total}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<div class="d-flex gap-2 my-3">
+  <a class="btn btn-primary" href="/media/{{plot.name}}.docx">
+    View Document
+  </a>
+  <a class="btn btn-success" href="/media/{{plot.name}}.html">
+    Network Plot
+  </a>
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-2 bg-blue text-center">
+    
+</div>
+    <p>
+        <i>
+        <a class="text-center py-3">  Fast and Efficient Design || </a>
+        <i>
+        <i>
+        <a class="text-center py-3">Accurate Qoutations || </a>
+        </i>
+        <i>
+        <a class="text-center py-3">  Readily Integratable || </a>
+        </i>
+        <i>
+        <a class="text-center py-3"> You are in charge</a>
+        </i>
+    </p>
+
+</div>
+
+</footer>
+{% endblock content %}

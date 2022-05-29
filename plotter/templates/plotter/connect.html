@@ -2,7 +2,7 @@
 <div class="card p-3 mb-3">
     <form class="form-group" method="POST">
         {% csrf_token %}
-        <legend class="border-bottom mb-4">More settings</legend>
+        <legend class="border-bottom mb-4">Set Start, Integration Point</legend>
         <div class="form-group mb-4">
             {{ form|crispy }}
         </div>
@@ -12,4 +12,32 @@
     </form>
 
 </div>
+
+
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-2 bg-blue text-center">
+    
+    </div>
+
+        <p>
+            <i>
+            <a class="text-center py-3">  Fast and Efficient Design || </a>
+            <i>
+            <i>
+            <a class="text-center py-3">Accurate Qoutations || </a>
+            </i>
+            <i>
+            <a class="text-center py-3">  Readily Integratable || </a>
+            </i>
+            <i>
+            <a class="text-center py-3"> You are in charge of the design</a>
+            </i>
+        </p>
+
+    </div>
+    
+
+    </div>
+
+</footer>
 {% endblock content %}
