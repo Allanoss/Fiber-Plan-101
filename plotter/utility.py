@@ -437,10 +437,10 @@ total
     #     row_cells[0].text = str(qty)
     #     row_cells[1].text = id
     #     row_cells[2].text = desc
-    poles = (1, "Poles", "", "", "", "")
+    poles = (1, "Poles", "", poles, "", poles_price)
     if plot.pole:
         poles = (1, "Poles", plot.pole.sku, poles, plot.pole.unit_price, poles_price),
-        
+
     records = (
         poles,
         (2, "Fibre Cable", plot.fibre_optic.sku, fibre_optic, plot.fibre_optic.unit_price, fibre_optic_price),
