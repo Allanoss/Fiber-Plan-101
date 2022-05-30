@@ -137,4 +137,4 @@ MEDIA_ROOT = 'media/'
 
 MEDIA_URL='media/'
 
-CSRF_TRUSTED_ORIGINS=['http://fiber-plan.ingenious.or.ke/']
+CSRF_TRUSTED_ORIGINS=['http://fiber-plan.ingenious.or.ke']
