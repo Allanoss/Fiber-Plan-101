@@ -1,7 +1,6 @@
 from django.contrib import messages
 from calendar import c
 from ssl import AlertDescription
-from turtle import color
 from django.http import HttpRequest
 from django.shortcuts import redirect
 import openrouteservice as ors
