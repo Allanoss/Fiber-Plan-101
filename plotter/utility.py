@@ -437,20 +437,47 @@ total
     #     row_cells[0].text = str(qty)
     #     row_cells[1].text = id
     #     row_cells[2].text = desc
-    poles = (1, "Poles", "", poles, "", poles_price)
+    poles_record = (1, "Poles", "", poles, "", poles_price)
     if plot.pole:
-        poles = (1, "Poles", plot.pole.sku, poles, plot.pole.unit_price, poles_price),
+        poles_record = (1, "Poles", plot.pole.sku, poles, plot.pole.unit_price, poles_price)
 
-    records = (
-        poles,
-        (2, "Fibre Cable", plot.fibre_optic.sku, fibre_optic, plot.fibre_optic.unit_price, fibre_optic_price),
-        (3, "Man hole", plot.man_hole.sku, man_holes, plot.man_hole.unit_price, man_hole_price),
-        (4, "Hand Hole", plot.hand_hole.sku, hand_holes, plot.hand_hole.unit_price, hand_hole_price),
-        (5, "Support Tangent", plot.Support_Tangent.sku, Support_Tangent, plot.Support_Tangent.unit_price, support_tangent_price),
-        (6, "ONU", plot.onu.sku, onu, plot.onu.unit_price, onu_price),
-        (7, "OLT", plot.olt.sku, olt, plot.olt.unit_price, olt_price),
-        ("", "", "TOTAL", "", "", total),
-    )
+    fibre_optic_record = (2, "Fibre Cable", "", fibre_optic, "", fibre_optic_price)
+    if plot.fibre_optic:
+        fibre_optic_record = (2, "Fibre Cable", plot.fibre_optic.sku, fibre_optic, plot.fibre_optic.unit_price, fibre_optic_price)
+
+    man_holes_record = (3, "Man hole", "", man_holes, "", man_hole_price)
+    if plot.man_hole:
+        man_holes_record = (3, "Man hole", plot.man_hole.sku, man_holes, plot.man_hole.unit_price, man_hole_price)
+
+    hand_holes_record = (4, "Hand Hole", "", hand_holes, "", hand_hole_price)
+    if plot.hand_hole:
+        hand_holes_record = (4, "Hand Hole", plot.hand_hole.sku, hand_holes, plot.hand_hole.unit_price, hand_hole_price)
+
+    support_tangent_record = (5, "Support Tangent", "", Support_Tangent, "", support_tangent_price)
+    if plot.Support_Tangent:
+        support_tangent_record = (5, "Support Tangent", plot.Support_Tangent.sku, Support_Tangent, plot.Support_Tangent.unit_price, support_tangent_price)
+
+    onu_record = (6, "ONU", "", onu, "", onu_price)
+    if plot.onu:
+        onu_record = (6, "ONU", plot.onu.sku, onu, plot.onu.unit_price, onu_price)
+
+    olt_record = (7, "OLT", "", olt, "", olt_price)
+    if plot.olt:
+        olt_record = (7, "OLT", plot.olt.sku, olt, plot.olt.unit_price, olt_price)
+    
+    total_record = ("", "", "TOTAL", "", "", total)
+
+    records = [
+        poles_record,
+        fibre_optic_record,
+        man_holes_record,
+        hand_holes_record,
+        support_tangent_record,
+        onu_record,
+        olt_record,
+        total_record,
+    ]
+    print(records)
 
     table = document.add_table(rows=1, cols=6)
     hdr_cells = table.rows[0].cells
