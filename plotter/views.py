@@ -137,14 +137,19 @@ def plot(request, id):
             connect_point = x_y_array
         except:
             pass
-           
-    MinTot, Start = plot_network(points, names, map_name, set_start, connect_point)
-
-    plot.distance = round(MinTot, 2)
-    plot.start = Start
-    plot.save()
     
-    return redirect(reverse('plotter-network', args=[plot.id]))
+    try:
+        MinTot, Start = plot_network(points, names, map_name, set_start, connect_point)
+
+        plot.distance = round(MinTot, 2)
+        plot.start = Start
+        plot.save()
+
+        return redirect(reverse('plotter-network', args=[plot.id]))
+    except:
+        messages.error(request, 'Check coordinates and try again')
+
+        return redirect(reverse('plotter-populate', args=[plot.id]))
 
 @login_required
 def quote_item(request, id):
@@ -193,15 +198,15 @@ def quote_price(request, id):
     Support_Tangent = poles
     onu = onus
     olt = "1"
-    # save_quote_to_file(plot, poles, poles_price,
-    #     fibre_optic, fibre_optic_price,
-    #     man_holes, man_hole_price,
-    #     hand_holes, hand_hole_price,
-    #     Support_Tangent, support_tangent_price,
-    #     onu, onu_price,
-    #     olt, olt_price, 
-    #     total
-    # )
+    save_quote_to_file(plot, poles, poles_price,
+        fibre_optic, fibre_optic_price,
+        man_holes, man_hole_price,
+        hand_holes, hand_hole_price,
+        Support_Tangent, support_tangent_price,
+        onu, onu_price,
+        olt, olt_price, 
+        total
+    )
    
     context = {
         'plot':plot,
