@@ -137,14 +137,19 @@ def plot(request, id):
             connect_point = x_y_array
         except:
             pass
-           
-    MinTot, Start = plot_network(points, names, map_name, set_start, connect_point)
-
-    plot.distance = round(MinTot, 2)
-    plot.start = Start
-    plot.save()
     
-    return redirect(reverse('plotter-network', args=[plot.id]))
+    try:
+        MinTot, Start = plot_network(points, names, map_name, set_start, connect_point)
+
+        plot.distance = round(MinTot, 2)
+        plot.start = Start
+        plot.save()
+
+        return redirect(reverse('plotter-network', args=[plot.id]))
+    except:
+        messages.error(request, 'Check coordinates and try again')
+
+        return redirect(reverse('plotter-populate', args=[plot.id]))
 
 @login_required
 def quote_item(request, id):

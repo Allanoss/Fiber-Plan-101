@@ -75,8 +75,7 @@ def Start_Distance(points, connect_point=None):
         try:
             distance=ors_distance(now)
         except:
-           def Coorderror (request,id):
-                messages.error(request, message='Check coordinates and try again.')
+            raise Exception("Error")
                    
         Tdistance+=distance
                    
@@ -107,8 +106,7 @@ def Set_Start_Distance(points, set_start, connect_point=None):
         try:
             distance=ors_distance(now)
         except:
-           def Coorderror (request,id):
-                messages.error(request, 'Check coordinates and try again.') 
+           raise Exception("Error")
         Tdistance+=distance
 
     if connect_point:
@@ -136,7 +134,10 @@ def plot(points, names, map_name, set_start=None, connect_point=None):
     if set_start:
         Tdistance, Start, Altstart= Set_Start_Distance(points, set_start, connect_point)
     else:
-        Tdistance, Start, Altstart = Start_Distance(points, connect_point)
+        try:
+            Tdistance, Start, Altstart = Start_Distance(points, connect_point)
+        except:
+            raise Exception("Error")
 
     
     gmaps.configure(api_key=apikey)
